@@ -4,7 +4,7 @@ version: '3.8'
 
 services:
     api:
-        image: jeffstjean/oweek_nodejs:prod
+        image: jeffstjean/oweek:prod
         deploy:
             replicas: 3
             restart_policy: 
