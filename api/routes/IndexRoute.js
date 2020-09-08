@@ -1,6 +1,5 @@
 const router = require('express').Router();
 const User = require('../models/UserModel')
-const { is_user } = require('../services/auth')
 
 const NUM_TOP_USERS = 5;
 
