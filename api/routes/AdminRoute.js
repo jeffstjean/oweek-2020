@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { is_admin } = require('../services/auth')
+const { is_admin } = require('../services/Auth')
 const Config = require('../models/ConfigModel')
 
 router.get('/admin', (req, res) => {

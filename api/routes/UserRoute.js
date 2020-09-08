@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const User = require('../models/UserModel')
-const { is_user, is_admin } = require('../services/auth')
+const { is_user, is_admin } = require('../services/Auth')
 
 router.get('/me', is_user, async (req, res) => {
     const user = req.user
