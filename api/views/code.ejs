@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redeem</title>
+    <link rel="stylesheet" href="/css/auth.css">
+    <script src="/js/auth.js" defer></script>
+    <script src="https://kit.fontawesome.com/9b01fa1231.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="signup">
+            <%- include('partials/nav.ejs') %>
+            <h1><%- code.title %></h1>
+            <% if(!is_accepting_points) { %>
+                <h3>Code can no longer be redeemed.</h3>
+            <% } else if(already_redeemed) { %>
+                <h3>You already redeemed this code (<%- code.points %> points).</h3>
+            <% } else { %>
+            <h3>You received <%- code.points %> points!</h3>
+            <% } %>
+            <p><%- code.description %></p>
+            <button class="submit" href="<%=code.url%>" target="_blank">Secret Button</button>
+        </div>
+    </div>
+    <%- include('partials/footer.ejs') %>
+</body>
+</html>

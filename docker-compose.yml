@@ -1,0 +1,28 @@
+# Any base level configurations that will apply to all deployments (local dev, staging, prod)
+
+version: '3.8'
+
+services:
+    api:
+        env_file: .env
+        networks:
+            - app-network
+    proxy:
+        image: nginx:1.19.2
+        ports:
+            - "80:80"
+            - "443:443"
+        configs:
+            - source: proxy
+              target: /etc/nginx/nginx.conf 
+        networks:
+            - app-network
+        depends_on: 
+            - api
+        deploy:
+            placement:
+                constraints: [node.role == manager]
+
+networks:
+    app-network:
+        driver: overlay

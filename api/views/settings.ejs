@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings</title>
+    <link rel="stylesheet" href="css/auth.css">
+    <script src="js/auth.js" defer></script>
+    <script src="https://kit.fontawesome.com/9b01fa1231.js" crossorigin="anonymous"></script>
+</head>
+<body onload="spin_eyes()">
+    <div class="container">
+        <div class="signup">
+            <%- include('partials/admin_nav.ejs') %>
+            <table>
+                <tr>
+                    <td class="bold">Is Accepting Points</td>
+                    <td><%- is_accepting_points %></td>
+                </tr>
+            </table>
+            <form action="/settings" method="post" autocomplete="off">
+                <input type="hidden" name="form" value="accepting">
+                <% if(locals.is_accepting_points) { %>
+                <input type="submit" value="Stop Accepting Points" class="submit">
+                <% } else { %>
+                    <input type="submit" value="Start Accepting Points" class="submit">
+                <% } %>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

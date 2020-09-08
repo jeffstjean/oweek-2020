@@ -1,0 +1,17 @@
+
+<div class="nav" >
+  <ul>
+    <li><a href="/">Home</a></li>
+    <% if(locals.is_logged_in) { %>
+      <li><a href="/me">Account</a></li>
+      <% if(locals.is_admin) { %>
+        <li><a href="/admin">Admin</a></li>
+      <% } %>
+      <li><a href="/logout">Logout</a></li>
+    <% } else { %>
+      <li><a href="/login">Log In</a></li>
+      <li><a href="/signup">Signup</a></li>
+    <% } %>
+  </ul>
+</div>
+  

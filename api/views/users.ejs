@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Users</title>
+    <link rel="stylesheet" href="css/auth.css">
+    <script src="js/auth.js" defer></script>
+    <script src="https://kit.fontawesome.com/9b01fa1231.js" crossorigin="anonymous"></script>
+</head>
+<body onload="spin_eyes()">
+    <div class="container">
+        <div class="signup">
+            <%- include('partials/admin_nav.ejs') %>
+            <table>
+                <colgroup>
+                    <col id="place">
+                    <col id="points">
+                    <col id="name">
+                </colgroup>
+                <tr>
+                    <th>Place</th>
+                    <th>Points</th>
+                    <th>Name</th>
+                </tr>
+                    <% users.forEach((user, i) => { %>
+                        <tr>
+                            <td><%- i+1 %></td>
+                            <td><%- user.points %></td>
+                            <td><%- user.displayname %></td>
+                        </tr>
+                    <% }) %>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

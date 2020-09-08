@@ -1,0 +1,21 @@
+FROM node:10-alpine
+
+WORKDIR /home/node
+
+COPY package*.json ./
+
+# Install nodemon for hot reload
+RUN npm install -g nodemon
+
+RUN npm install
+
+ENV NODE_PATH='/home/node/node_modules'
+
+WORKDIR /home/node/app
+
+COPY . .
+
+EXPOSE 5000
+
+# run nodemon for hot reload
+CMD nodemon server.js

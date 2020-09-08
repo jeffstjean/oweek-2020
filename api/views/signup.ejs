@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+    <link rel="stylesheet" href="css/auth.css">
+    <script src="js/auth.js" defer></script>
+    <script src="https://kit.fontawesome.com/9b01fa1231.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container">
+        <% if (locals.alerts) { %>
+            <div class="alert-wrapper">
+                <div class="alert">
+                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+                <% alerts.forEach((alert, i, array) => { if(i == array.length-1) { %>
+                        <%- alert %>
+                    <% } else { %>
+                        <%- alert + '</br>' %>
+                <% }}); %>
+                </div>
+            </div>
+        <% } %>
+        <form action="/signup" method="post" class="signup" autocomplete="off">
+            <%- include('partials/nav.ejs') %>
+            <svg id="ghost" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 593 527">
+                <path id="body" data-name="body" stroke="#696969" stroke-width="4px" fill="#FFB8FF" d="M508.27,340.93c0,31.27.29,62.54-.11,93.81-.23,17.57-1.36,35.15-2.64,52.69-.28,3.88-2.29,8-4.59,11.27-4.3,6.11-13,7.49-18.4,2.39-7.91-7.5-14.88-16-22.34-24-4.87-5.21-9.63-10.57-14.91-15.33-13.3-12-22.58-9.93-34.52,2.87-7.35,7.87-13.67,16.7-21,24.57A62.56,62.56,0,0,1,375.13,501c-9,5-18.41,3.92-25.9-2.9-6.93-6.31-12.58-14-18.88-21-5-5.55-9.56-11.65-15.29-16.32-13.42-10.95-30-8.61-41.68,5.71-6.8,8.34-12.6,17.48-19.14,26.05-5.11,6.69-11.42,11.36-20.54,11.22a22.14,22.14,0,0,1-16.59-7.78c-7-7.73-13.4-16-20.09-24-2.88-3.43-5.68-6.95-8.83-10.11-9.36-9.42-19.37-10.82-29.82-2.59-9.7,7.63-18.3,16.68-27.29,25.2-5.52,5.25-10.64,10.94-16.34,16-6.29,5.55-15.27,4.65-19.92-2.42a44.49,44.49,0,0,1-6.36-15.36,117.36,117.36,0,0,1-2.16-22.77q-.3-112.23-.23-224.47c0-1.5.09-3,.15-4.49A192.65,192.65,0,0,1,114,138.06c32.82-54.5,80.73-88.67,143.24-99.95,70.6-12.74,133.41,5.28,186.26,54.44,35.41,33,56,74,62.73,121.79a244.32,244.32,0,0,1,1.93,31.79c.25,31.6.09,63.2.09,94.8Z">
+                    <animate attributeName="fill" values="#FFB8FF ; #FF0000 ; #00FFFF ; #FFB852" dur="30s" repeatCount="indefinite" />
+                </path>
+                <circle id="left-eye" data-name="left-eye" r="50" fill="white" cx="220" cy="200"></circle>
+                <circle id="left-pupil" data-name="left-pupil" r="25" fill="black" cx="220" cy="200"></circle>
+                <circle id="right-eye" data-name="right-eye" r="50" fill="white" cx="390" cy="200"></circle>
+                <circle id="right-pupil" data-name="right-pupil" r="25" fill="black" cx="390" cy="200"></circle>
+            </svg>
+            <input type="text" id="username" name="username" placeholder="Username" class="username" onfocus="animate_eyes(90)" onblur="const x = Math.random(); animate_eyes((x > 0.66) ? 0 : ((x > 0.33) ? 180 : 270))"><br>
+            <h5 class="subtitle">Do not share this. You will need it to sign in again.</h5>
+            <input type="text" id="displayname" name="displayname" placeholder="Display Name" class="displayname" onfocus="animate_eyes(90)" onblur="const x = Math.random(); animate_eyes((x > 0.66) ? 0 : ((x > 0.33) ? 180 : 270))"><br>
+            <h5 class="subtitle">Everyone will see this. Be appropriate.</h5>
+            <input type="submit" value="Submit" class="submit">
+        </form>
+    </div>
+    <%- include('partials/footer.ejs') %>
+</body>
+</html>

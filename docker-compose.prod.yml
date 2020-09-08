@@ -1,0 +1,24 @@
+# Any configurations that apply only to the production environment
+
+version: '3.8'
+
+services:
+    api:
+        image: jeffstjean/oweek_nodejs:prod
+        deploy:
+            replicas: 3
+            restart_policy: 
+                max_attempts: 3
+                condition: on-failure
+            update_config:
+                parallelism: 1
+                delay: 10s
+        environment:
+            - NODE_ENV=PRODUCTION 
+    proxy:
+        volumes: 
+            - /etc/letsencrypt:/etc/letsencrypt
+            - /usr/share/nginx/html:/usr/share/nginx/html
+configs:
+    proxy:
+        file: ./nginx/prod.conf
