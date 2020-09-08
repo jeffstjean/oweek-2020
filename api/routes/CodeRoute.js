@@ -7,7 +7,7 @@ const archiver = require('archiver');
 
 const Code = require('../models/CodeModel');
 const Config = require('../models/ConfigModel');
-const { is_user, is_admin } = require('../services/auth')
+const { is_user, is_admin } = require('../services/Auth')
 
 router.get('/codes', is_admin, async (req, res) => {
     try {
