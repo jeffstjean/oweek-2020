@@ -1,8 +1,6 @@
 const router = require('express').Router();
 const { is_admin } = require('../services/auth')
 const Config = require('../models/ConfigModel')
-const User = require('../models/UserModel')
-const Code = require('../models/CodeModel')
 
 router.get('/admin', (req, res) => {
     res.redirect('/settings');

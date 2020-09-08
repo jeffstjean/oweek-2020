@@ -1,7 +1,6 @@
 const fs = require('fs');
 const path = require('path');
 
-const mongoose = require('mongoose')
 const router = require('express').Router();
 const csv = require('csv-parse/lib/sync');
 const archiver = require('archiver');
@@ -20,21 +19,6 @@ router.get('/codes', is_admin, async (req, res) => {
         res.send('error')
     }
 });
-
-const zip_codes = async (directory) => {
-    const output = fs.createWriteStream(path.join(directory, 'codes.zip'));
-    const archive = archiver('zip');
-    output.on('close', () => {
-        console.log(archive.pointer() + ' total bytes');
-        console.log('archiver has been finalized and the output file descriptor has closed.');
-    });
-    archive.on('error', function(err){
-        throw err;
-    });
-    archive.pipe(output);
-    archive.directory(source_dir, false);
-    archive.finalize();
-}
 
 router.get('/generate', is_admin, async (req, res) => {
     console.log('generating all codes');
