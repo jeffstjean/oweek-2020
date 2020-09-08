@@ -12,7 +12,7 @@ on:
 env:
     DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
     DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-    DOCKER_NAME: jeffstjean/oweek:prod
+    DOCKER_NAME: jeffstjean/oweek_nodejs:prod
     DOCKER_PATH: ./api
     DEPLOY_NAME: oweek_prod
     DEPLOY_PATH: /home/jeff/oweek-prod
