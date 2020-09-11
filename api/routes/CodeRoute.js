@@ -79,7 +79,7 @@ router.get('/redeem/:_id', is_user, async (req, res) => {
     }
 });
 
-router.get('/code/:_id', async (req, res) => {
+router.get('/code/:_id', is_user, async (req, res) => {
     console.log(req.user)
     const user = req.user;
     const config = (await Config.find({}))[0];
