@@ -60,9 +60,10 @@ router.post('/login', async (req, res) => {
         if(user) {
             const token = user.generateJWT();
             res.cookie('auth', token);
-            console.log(req.query)
-            if(req.query.q) {
-                res.redirect(q);
+            req.clearCookie('next')
+            console.log(req.cookies)
+            if(req.cookies && req.cookies.next) {
+                res.redirect(req.cookies.next);
             }
             else {
                 res.redirect('/me');
