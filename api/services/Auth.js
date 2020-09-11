@@ -53,7 +53,7 @@ const is_user = async (req, res, next) => {
         const { user, err } = await decode_user(req)
         if(err) {
             res.clearCookie('auth')
-            res.send(err)
+            res.redirect('/login')
         }
         else {
             req.user = user;
