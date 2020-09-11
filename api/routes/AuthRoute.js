@@ -13,6 +13,7 @@ router.post('/signup', async (req, res) => {
         return res.render('signup', { alerts: ['Please enter an appropriate display name.'] });
     }
     try {
+        req.body.username = req.body.username.toLowerCase();
         const existing_user = await User.findOne({ username: req.body.username });
         if(existing_user) {
             console.log('User already exists')
@@ -53,6 +54,7 @@ router.get('/login', (req, res) => {
 router.post('/login', async (req, res) => {
     res.clearCookie('auth')
     console.log(req.body)
+    req.body.username = req.body.username.toLowerCase();
     try {
         const user = await User.findOne({ username: req.body.username });
         if(user) {
