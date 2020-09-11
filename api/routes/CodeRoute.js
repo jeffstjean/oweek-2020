@@ -51,7 +51,7 @@ router.get('/generate', is_admin, async (req, res) => {
         } 
         catch(e) {
             console.log(e)
-            res.redirect('/codes', {alerts: ['Unable to process codes'] });
+            res.redirect('/codes', { alerts: ['Unable to process codes'] });
         }
     })
 });
@@ -60,6 +60,7 @@ router.get('/redeem/:_id', is_user, async (req, res) => {
     const user = req.user;
     const config = (await Config.find({}))[0];
     let code = await Code.findById(req.params._id)
+    console.log(code.url)
     if(!config.is_accepting_points) {
         console.log('not accepting')
         res.render('code', { code, is_accepting_points: false });
@@ -78,9 +79,8 @@ router.get('/redeem/:_id', is_user, async (req, res) => {
 });
 
 router.get('/code/:_id', async (req, res) => {
-    const _id = req.params._id
-    const code = await Code.findById(_id)
-    res.render('code', code);
+    let code = await Code.findById(req.params._id)
+    res.render('code', { code, already_redeemed: true, is_accepting_points: true });
 });
 
 

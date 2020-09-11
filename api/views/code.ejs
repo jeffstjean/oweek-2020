@@ -21,7 +21,7 @@
             <h3>You received <%- code.points %> points!</h3>
             <% } %>
             <p><%- code.description %></p>
-            <button class="submit" href="<%=code.url%>" target="_blank">Secret Button</button>
+            <button class="submit" onclick="window.open('<%=code.url%>','_blank')" target="_blank">Secret Button</button>
         </div>
     </div>
     <%- include('partials/footer.ejs') %>

@@ -20,7 +20,8 @@ const connect = () => {
     try {
       const connection = mongoose.connect(uri, options);
       config = await Config.find({})
-      if(config.length === 0) create_config()
+      console.log(config)
+      if(config.length === 0) await new Config().save();
       resolve(connection)
     }
     catch(e) {
@@ -28,10 +29,6 @@ const connect = () => {
     }
   });
 };
-
-const create_config = () => {
-  new Config().save();
-}
 
 module.exports = {
   connect,

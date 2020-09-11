@@ -4,7 +4,7 @@ const path = require('path');
 const fs = require('fs')
 
 const code_schema = mongoose.Schema({
-    title: { type: String, required: 'A name is required' },
+    title: { type: String, required: 'A title is required' },
     description: { type: String, required: 'A description is required' },
     location: { type: String, default: 'N/A' },
     url: { type: String },
