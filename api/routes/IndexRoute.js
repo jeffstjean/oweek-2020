@@ -5,7 +5,7 @@ const NUM_TOP_USERS = 5;
 
 router.get('/', async (req, res) => {
     try {
-        let users = (await User.find({}).sort({points: -1}).exec()).map(user => { return { displayname: user.displayname, points: user.points } });
+        let users = (await User.find({role: 'user'}).sort({points: -1}).exec()).map(user => { return { displayname: user.displayname, points: user.points } });
         const top_ten = (users.length < NUM_TOP_USERS) ? users.slice(0, users.length) : users.slice(0, NUM_TOP_USERS);
         res.render('index', { top_ten });
     }
