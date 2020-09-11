@@ -9,6 +9,7 @@ router.get('/signup', (req, res) => {
 
 router.post('/signup', async (req, res) => {
     res.clearCookie('auth')
+    console.log(req.body)
     if(filter.isProfane(req.body.displayname)) {
         return res.render('signup', { alerts: ['Please enter an appropriate display name.'] });
     }
