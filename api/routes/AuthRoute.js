@@ -60,7 +60,12 @@ router.post('/login', async (req, res) => {
         if(user) {
             const token = user.generateJWT();
             res.cookie('auth', token);
-            res.redirect('/me');
+            if(req.query.q) {
+                res.redirect(q);
+            }
+            else {
+                res.redirect('/me');
+            }
         }
         else {
             return res.render('login', { alerts: ['Invalid username'] });
