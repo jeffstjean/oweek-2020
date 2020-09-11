@@ -80,8 +80,26 @@ router.get('/redeem/:_id', is_user, async (req, res) => {
 });
 
 router.get('/code/:_id', async (req, res) => {
+    console.log(req.user)
+    const user = req.user;
+    const config = (await Config.find({}))[0];
     let code = await Code.findById(req.params._id)
-    res.render('code', { code, already_redeemed: true, is_accepting_points: true });
+    console.log(code.url)
+    if(!config.is_accepting_points) {
+        console.log('not accepting')
+        res.render('code', { code, is_accepting_points: false });
+    }
+    else if(user.codes.indexOf(code._id) === -1) {
+        console.log(`${user.displayname} redeemed ${code._id}`)
+        user.points += code.points;
+        user.codes.push(code._id);
+        await user.save();
+        res.render('code', { code, already_redeemed: false, is_accepting_points: true }); 
+    }
+    else {
+        console.log(`${user.displayname} has already redeemed ${code._id}`)
+        res.render('code', { code, already_redeemed: true, is_accepting_points: true });
+    }
 });
 
 
