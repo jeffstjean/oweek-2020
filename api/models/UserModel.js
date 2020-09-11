@@ -18,12 +18,12 @@ user_schema.methods.generateJWT = function() {
     _id: this._id,
     displayname: this.displayname,
     role: this.role
-  }, JWT_SECRET, { expiresIn: expiry });
+  }, 'abc', { expiresIn: expiry });
 };
 
 user_schema.statics.decodeJWT = function(token) {
   try {
-    return jwt.verify(token, JWT_SECRET);
+    return jwt.verify(token, 'abc');
   }
   catch(e) {
     return false;
